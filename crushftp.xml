@@ -61,8 +61,8 @@
             <Mode/>
         </Variable>
     </Environment>
-    <Config Name="Port 1" Target="9090" Default="9090" Mode="tcp" Description="Crush FTP Web Port 8080" Type="Port"
-            Display="advanced-hide" Required="true" Mask="false">8080</Config>
+    <Config Name="Port 1" Target="9090" Default="9090" Mode="tcp" Description="Crush FTP Web Port 9090" Type="Port"
+            Display="advanced-hide" Required="true" Mask="false">9090</Config>
     <Config Name="CrushFTP Home" Target="/var/opt/CrushFTP8_PC" Default="/mnt/user/appdata/crushftp/" Mode="rw"
             Description="CrushFTP Home/Installation Directory" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/crushftp/</Config>
 
