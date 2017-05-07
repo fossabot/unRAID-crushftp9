@@ -7,11 +7,12 @@
     <GitHub>https://github.com/stuckless/unRAID-crushftp/</GitHub>
     <Network>bridge</Network>
     <Privileged>false</Privileged>
+    <Icon>http://www.crushftp.com/images/logo.jpg</Icon>
     <Support>http://www.crushftp.com/support.html</Support>
     <Overview>
         CrushFTP is an extremely powerful, easy to use FTP solution.
     </Overview>
-    <Category>MediaApp:Video MediaApp:Music MediaApp:Photos MediaServer:Video MediaServer:Music MediaServer:Photos</Category>
+    <Category>Network:FTP Network:Other Productivity:Tools Network:Web</Category>
     <WebUI>http://[IP]:[PORT:9090]/</WebUI>
     <TemplateURL/>
     <Icon></Icon>
