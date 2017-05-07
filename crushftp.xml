@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Container version="2">
+    <Beta>False</Beta>
+    <Name>crushftp</Name>
+    <Repository>stuckless/crushftp</Repository>
+    <Registry>https://hub.docker.com/r/stuckless/crushftp/</Registry>
+    <GitHub>https://github.com/stuckless/unRAID-crushftp/</GitHub>
+    <Network>bridge</Network>
+    <Privileged>false</Privileged>
+    <Support>http://www.crushftp.com/support.html</Support>
+    <Overview>
+        CrushFTP is an extremely powerful, easy to use FTP solution.
+    </Overview>
+    <Category>MediaApp:Video MediaApp:Music MediaApp:Photos MediaServer:Video MediaServer:Music MediaServer:Photos</Category>
+    <WebUI>http://[IP]:[PORT:9090]/</WebUI>
+    <TemplateURL/>
+    <Icon></Icon>
+    <ExtraParams/>
+
+    <Description>
+        CrushFTP Server[br][br]
+        [b][u][span style='color: #E80000;']Configuration[/span][/u][/b][br]
+        [b]/var/opt/CrushFTP8_PC[/b] - Installation directory[br]
+        [b]/files[/b] Files for FTP.[br]
+        [br][b][u][span style='color: #E80000;']PERMISSIONS[/span][/u][/b][br]
+        [b]PUID[/b] Should be the 'nobody' user for unRAID
+        [b]PGID[/b] Should be the 'users' group for unRAID
+        [br][b][u][span style='color: #E80000;']Notes[/span][/u][/b][br]
+    </Description>
+    <Networking>
+        <Mode>bridge</Mode>
+        <Publish>
+            <Port>
+                <HostPort>9090</HostPort>
+                <ContainerPort>9090</ContainerPort>
+                <Protocol>tcp</Protocol>
+            </Port>
+        </Publish>
+    </Networking>
+    <Data>
+        <Volume>
+            <HostDir>/mnt/user/appdata/crushftp/</HostDir>
+            <ContainerDir>/var/opt/CrushFTP8_PC</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+        <Volume>
+            <HostDir>/mnt/user/ftpfiles/</HostDir>
+            <ContainerDir>/files</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+        <Volume>
+            <HostDir>/mnt/user</HostDir>
+            <ContainerDir>/unraid</ContainerDir>
+            <Mode>rw</Mode>
+        </Volume>
+    </Data>
+    <Environment>
+        <Variable>
+            <Value>crush8password$</Value>
+            <Name>CRUSHPASSWORD</Name>
+            <Mode/>
+        </Variable>
+    </Environment>
+    <Config Name="Port 1" Target="9090" Default="9090" Mode="tcp" Description="Crush FTP Web Port 8080" Type="Port"
+            Display="advanced-hide" Required="true" Mask="false">8080</Config>
+    <Config Name="CrushFTP Home" Target="/var/opt/CrushFTP8_PC" Default="/mnt/user/appdata/crushftp/" Mode="rw"
+            Description="CrushFTP Home/Installation Directory" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/crushftp/</Config>
+
+    <Config Name="FTP Files" Target="/files" Default="/mnt/user/ftpfiles/" Mode="rw"
+            Description="FTP Files" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/ftpfiles/</Config>
+
+    <Config Name="unRAID Share Path" Target="/unraid" Default="/mnt/user" Mode="rw"
+            Description="Container Path: /unraid" Type="Path" Display="hidden" Required="false" Mask="false">/mnt/user</Config>
+
+    <Config Name="Crush Admin Password" Target="CRUSHPASSWORD" Default="crush8password$" Mode="" Description="Default CrushFTP Admin Password"
+            Type="Variable" Display="advanced-hide" Required="false" Mask="false">crush8password$</Config>
+</Container>
