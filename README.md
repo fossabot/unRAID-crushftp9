@@ -1,4 +1,4 @@
-# CrushFTP for Docker image for Unraid
+# CrushFTP docker image for Unraid 
 
 Docker image for [CrushFTP server](https://www.crushftp.com/) built on [phusion/baseimage Ubuntu 18.04 LTS](https://github.com/phusion/baseimage-docker) with openjdk-8-jre added.
 
@@ -7,7 +7,7 @@ Docker image for [CrushFTP server](https://www.crushftp.com/) built on [phusion/
 
 The Crushftp process isn't ran by 'root' so ports below 1024 won't work.  If wanting to use the basic FTP service the port needs to be changed to 9921 and the passive port range needs to be changed to 10000-10500 in the IP/Server preferences of Crushftp.  The port for HTTPS service also needs to be changed to 9443.  
 
-
+The Crushftp setup files are download from https://www.crushftp.com when the docker image is built.  
 
 ## Environment variables
 
@@ -22,7 +22,7 @@ The Crushftp process isn't ran by 'root' so ports below 1024 won't work.  If wan
 ## Template for Unraid
 
 
-add https://github.com/mikeylikesrocks/unraid-docker-templates to the template repository on the Docker tab in Unraid.  Template is unraid-crushftp9 for this image. 
+add https://github.com/mikeylikesrocks/unraid-docker-templates to the template repository on the Docker tab in Unraid.  Template is crushftp9 for this image. 
 
 
 ## Example docker run command
