@@ -1,14 +1,11 @@
-# BUILDING
-# docker build -t stuckless/crushftp:latest .
-
-# Ubuntu 16.04
-FROM phusion/baseimage:0.9.19
+# Ubuntu 18.04 LTS
+FROM phusion/baseimage:0.11
 
 CMD ["/sbin/my_init"]
 
-MAINTAINER Sean Stuckless <sean.stuckless@gmail.com>
+MAINTAINER Mikey Schaefer <mikeylikesrocks@gmail.com>
 
-# The docker container version, not SageTV version
+# The docker container version
 ENV CRUSHFTP_CONTAINER_VERSION="1.0.0"
 
 ENV APP_NAME="CrushFTP Server"
@@ -19,9 +16,8 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-# add crush user and group
-# RUN mkdir /var/opt/CrushFTP8_PC
-RUN useradd -u 911 -U -d /var/opt/CrushFTP8_PC -s /bin/bash crushftp
+
+
 
 # Speed up APT
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
@@ -29,35 +25,26 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 
 # libraries stuff
 RUN set -x \
-  && apt-get update \
-  && apt-get install -y wget curl net-tools file \
-    less vim software-properties-common unzip cifs-utils sudo
-
-RUN set -x
-
-RUN \
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-  add-apt-repository -y ppa:webupd8team/java && \
-  apt-get update && \
-  apt-get install -y oracle-java8-installer && \
-  rm -rf /var/lib/apt/lists/* && \
-  rm -rf /var/cache/oracle-jdk8-installer
-
-# Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-
+  && apt-get update && apt-get upgrade -y \
+  && apt-get install -y net-tools file \
+    less vim software-properties-common unzip cifs-utils sudo \
+    libjpeg-dev libjpeg8 libjpeg-turbo8 ufraw ufraw-batch imagemagick \
+    openjdk-8-jre \
+  && rm -rf /var/cache/apt/* 
+    
+    
 RUN apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    
+    
+# Add in custom my_ini.d scripts    
+
+ADD init.d/00-install /etc/my_init.d/00-install
+RUN chmod 755 /etc/my_init.d/00-install
 
 ADD init.d/10-adduser /etc/my_init.d/10-adduser
 RUN chmod 755 /etc/my_init.d/10-adduser
-
-ADD init.d/20-upgrade-crushftp /etc/my_init.d/20-upgrade-crushftp
-RUN chmod 755 /etc/my_init.d/20-upgrade-crushftp
-
-ADD init.d/30-setperms /etc/my_init.d/30-setperms
-RUN chmod 755 /etc/my_init.d/30-setperms
 
 ADD init.d/90-crushftp /etc/my_init.d/90-crushftp
 RUN chmod 755 /etc/my_init.d/90-crushftp
@@ -65,16 +52,12 @@ RUN chmod 755 /etc/my_init.d/90-crushftp
 ADD init.d/99-zmessage /etc/my_init.d/99-zmessage
 RUN chmod 755 /etc/my_init.d/99-zmessage
 
-# add the install
-ADD CrushFTP8_PC.zip /tmp/
 
-# how to add a service...
-#RUN mkdir /etc/service/complete
-#ADD services.d/99-complete /etc/service/complete/run
-#RUN chmod 755 /etc/service/complete/run
+ADD https://crushftp.com/early9/CrushFTP9_PC.zip /tmp/CrushFTP9_PC.zip
 
-VOLUME ["/var/opt/CrushFTP8_PC","/files"]
+
+VOLUME ["/var/opt/CrushFTP9_PC"]
 
 # WebServer
-EXPOSE 8080
-EXPOSE 9090
+EXPOSE 8080 9090 9921 9443 2222 10000-10500
+

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -f /var/opt/CrushFTP9_PC/installed ] ; then
+	echo "CrushFTP already installed"
+else
+  echo "Unzipping CrushFTP"
+  unzip -o -q /tmp/CrushFTP9_PC.zip -d /var/opt/
+  rm -f /tmp/CrushFTP9_PC.zip
+  touch /var/opt/CrushFTP9_PC/installed
+  echo "Removing extra files"
+  rm -Rf /var/opt/CrushFTP9_PC/CrushFTP*.exe /var/opt/CrushFTP9_PC/Install.txt
+  echo " " > /var/opt/CrushFTP9_PC/WebInterface/custom.css
+fi
+
+exit 0

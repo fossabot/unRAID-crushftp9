@@ -1,8 +1,20 @@
 #!/usr/bin/env bash
 
+
 PUID=${PUID:-99}
 PGID=${PGID:-100}
 
-if [ ! "$(id -u crushftp)" -eq "$PUID" ]; then usermod -o -u "$PUID" crushftp ; fi
-if [ ! "$(id -g crushftp)" -eq "$PGID" ]; then groupmod -o -g "$PGID" crushftp ; fi
+
+if [ ! "$(id -u nobody)" -eq "$PUID" ]; then usermod -o -u "$PUID" nobody ; fi
+if [ ! "$(id -g nobody)" -eq "$PGID" ]; then groupmod -o -g "$PGID" users ; fi
+
+usermod -d /var/opt/Crushftp9_PC nobody
+usermod -g users nobody
+
+chown -R nobody:users /var/opt/CrushFTP9_PC
+
+echo "Changed user 'nobody' PUID to ${PUID} and PGID to ${PGID} "
+
+
+exit 0
 
