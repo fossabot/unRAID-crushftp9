@@ -54,6 +54,8 @@ RUN chmod 755 /etc/my_init.d/99-zmessage
 
 
 ADD https://crushftp.com/early9/CrushFTP9_PC.zip /tmp/CrushFTP9_PC.zip
+# ADD ./CrushFTP9_PC.zip /tmp/CrushFTP9_PC.zip  #uncomment if .zip is already dowloaded to local dir
+
 
 
 VOLUME ["/var/opt/CrushFTP9_PC"]
