@@ -6,7 +6,7 @@ CMD ["/sbin/my_init"]
 MAINTAINER Mikey Schaefer <mikeylikesrocks@gmail.com>
 
 # The docker container version
-ENV CONTAINER_VERSION="1.0"
+ENV BUILD_VERSION="1.0"
 
 ENV APP_NAME="CrushFTP Server"
 ENV DEBIAN_FRONTEND=noninteractive
