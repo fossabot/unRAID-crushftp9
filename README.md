@@ -17,7 +17,9 @@ The Crushftp setup files are download from https://www.crushftp.com when the doc
 | `CRUSHPASSWORD`        | Password for admin user | `crush9password` |
 
 
+## Crushftp updates
 
+Crushftp should be updated from the admin UI.  Updates to this image will not update the app.
 
 ## Template for Unraid
 
