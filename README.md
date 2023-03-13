@@ -1,4 +1,6 @@
 # CrushFTP docker image for Unraid 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPaullGit%2FunRAID-crushftp9.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FPaullGit%2FunRAID-crushftp9?ref=badge_shield)
+
 
 Docker image for [CrushFTP server](https://www.crushftp.com/) built on [phusion/baseimage Ubuntu 18.04 LTS](https://github.com/phusion/baseimage-docker) with openjdk-8-jre added.
 
@@ -34,3 +36,7 @@ add https://github.com/mikeylikesrocks/unraid-docker-templates to the template r
 ```
 docker run -p 8080:8080 -p 9921:9921 -p 9443:9443 -p 2222:2222 -p 9090:9090 -p 10000:10500 -v /mnt/user:/var/opt/CrushFTP9_PC mdschaefer/unraid-crushftp9
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPaullGit%2FunRAID-crushftp9.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FPaullGit%2FunRAID-crushftp9?ref=badge_large)
